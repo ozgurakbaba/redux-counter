@@ -4,10 +4,27 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { createStore } from 'redux';
+import allReducer from './reducers';
+
+import { Provider } from 'react-redux'
+
+// ACTION -> Increment, Decrement (type, payload)
+
+// REDUCER
+
+// STORE -> Globalized State
+const store = createStore(allReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+// Testing store state
+store.subscribe(() => console.log(store.getState()));
+
+// DISPATCH
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+  <App />
+  </Provider>,
   document.getElementById('root')
 );
 
